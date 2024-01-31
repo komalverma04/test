@@ -27,38 +27,69 @@ router.get("", async (req,res)=>{
    */
   router.get("/post/:id", async (req,res)=>{
     try {
+      let slug = req.params.id;
+      const data = await Post.findById({_id : slug});
+
       const locals = {
         title: data.title,
         description: "Simple Blog Creation"
       }
-      let slug = req.params.id;
-      const data = await Post.findById({_id : slug});
+      
+      
       res.render('post', {locals, data, currentRoute: `/post/${slug}`});
     } catch(error){
       console.log(error);
     }
       
     });
-//   function insertPostData (){
-//     Post.insertMany([
-//       {
-//         title: "Building a Blog",
-//       body: "This is the body text"
-//     },
-//     {
-//       title: "Starting with git",
-//     body: "This is the body text"
-//   },
-//   {
-//     title: "HTML and CSS",
-//   body: "This is the body text"
-//  },
-//  {
-//    title: "Backened",
-//  body: "This is the body text"
-//  }
-//      
-//      ])
-//    }
-//insertPostData();
+    /**
+   * post /
+   * Post: search
+   */
+  router.post("/search", async (req,res)=>{
+    try {
+      const locals = {
+        title: "Search",
+        description: "Simple Blog Creation"
+      }
+      let searchTerm = req.body.searchTerm;
+      const searchNoSpecialChar = searchTerm.replace(/[^a-zA-Z0-9]/g, "")
+
+      const data = await Post.find({
+        $or: [
+          { title: { $regex: new RegExp(searchNoSpecialChar,'i')}},
+          { body: { $regex: new RegExp(searchNoSpecialChar,'i')}}
+        ]
+      });
+      res.render( 'search',{
+        locals,
+        data
+      });
+    } catch(error){
+      console.log(error);
+    }
+      
+    });
+ function insertPostData (){
+   Post.insertMany([
+     {
+       title: "Building a Blog",
+     body: "This is the body text"
+   },
+   {
+     title: "Starting with git",
+   body: "This is the body text"
+ },
+ {
+   title: "HTML and CSS",
+ body: "This is the body text"
+  },
+  {
+    title: "Backened",
+  body: "This is the body text"
+  }
+      
+      ])
+    }
+insertPostData();
  module.exports = router;
