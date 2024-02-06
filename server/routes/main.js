@@ -70,26 +70,26 @@ router.get("", async (req,res)=>{
     }
       
     });
- function insertPostData (){
-   Post.insertMany([
-     {
-       title: "Building a Blog",
-     body: "This is the body text"
-   },
-   {
-     title: "Starting with git",
-   body: "This is the body text"
- },
- {
-   title: "HTML and CSS",
- body: "This is the body text"
-  },
-  {
-    title: "Backened",
-  body: "This is the body text"
-  }
-      
-      ])
-    }
-insertPostData();
+// function insertPostData (){
+//   Post.insertMany([
+//     {
+//       title: "Building a Blog",
+//     body: "This is the body text"
+//   },
+//   {
+//     title: "Starting with git",
+//   body: "This is the body text"
+// },
+// {
+//   title: "HTML and CSS",
+// body: "This is the body text"
+//  },
+//  {
+//    title: "Backened",
+//  body: "This is the body text"
+//  }
+//      
+//      ])
+//    }
+//insertPostData();
  module.exports = router;

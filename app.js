@@ -1,7 +1,8 @@
 require('dotenv').config();
 const express = require('express');
-const bodyParser = require('body-parser');
+
 const expressLayouts = require('express-ejs-layouts');
+const methodOverride = require('method-override');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const MongoStore = require('connect-mongo');
@@ -13,11 +14,11 @@ connectDB(); // connecting DB
 app.use(express.urlencoded({extended: true}));
 app.use(express.json());
 app.use(cookieParser());
-
+app.use(methodOverride('_method'));
 app.use(session({
    secret: 'cat dog',
    resave: false,
-   saveUninitialized: true,
+   saveUninitialized: false,
    store: MongoStore.create({
       mongoUrl: process.env.MONGODB_URI
    }),
@@ -25,8 +26,7 @@ app.use(session({
 app.use(express.static("public"));
  
  
- app.use(bodyParser.urlencoded({ extended: true }))
-
+ 
 app.use(expressLayouts)
 app.set('layout', './layouts/main')
 app.set('view engine', 'ejs')
