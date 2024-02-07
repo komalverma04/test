@@ -12,14 +12,14 @@ const adminLayout = '../views/layouts/admin';
 const authmiddleware = (req,res,next) => {
     const token = req.cookies.token;
     if(!token){
-        res.redirect('/errorfile');
+        return res.status(401).json( { message: 'Unauthorized'} );
     }
     try{
-        const decoded = jwt.verify(token,jwtsecret);
+        const decoded = jwt.verify(token, jwtsecret);
         req.userId = decoded.userId;
         next();
     }catch(error){
-        res.redirect('/errorfile');
+        console.log(error);
     }
 }
 /**
@@ -62,7 +62,7 @@ router.post('/admin',async (req,res) =>{
     }
     });
     router.get('/errorfile',async (req,res) =>{
-        res.redirect('errorfile');
+        res.send('errorfile');
     });
 
 router.get('/dashboard', authmiddleware ,async (req,res) =>{
@@ -72,11 +72,11 @@ router.get('/dashboard', authmiddleware ,async (req,res) =>{
         };
         try{
             const data = await Post.find();
-            res.render('admin/dashboard',{locals, data});
+            res.render('admin/dashboard',{locals, data, layout: adminLayout});
         }catch(error){
             console.log(error);
         // Handle error rendering dashboard
-        res.send('/errorfile');
+        
         }
          
     });
@@ -170,6 +170,33 @@ router.get('/dashboard', authmiddleware ,async (req,res) =>{
         }
          
     });
+    
+   /**
+ * delete /
+ * admin - delete post
+ */
+
+
+    router.delete('/delete-post/:id', authmiddleware ,async (req,res) =>{
+       
+        try{
+           await Post.deleteOne({ _id: req.params.id});
+           res.redirect('/dashboard');
+        }catch(error){
+            console.log(error);
+        // Handle error rendering dashboard
+        res.send('/errorfile');
+        }
+         
+    });
+ /**
+ * get /
+ * admin - logout
+ */
+router.get('/logout', authmiddleware ,async (req,res) =>{
+    res.clearCookie('token');
+    res.redirect('/');
+});
     
     /**
  * post /
