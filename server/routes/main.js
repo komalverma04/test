@@ -3,6 +3,7 @@ const express = require('express');
 const app = express();
 const router = express.Router();
 const Post = require('../models/post');
+const Event = require('../models/event');
 router.get("", async (req,res)=>{
   const locals = {
     title: "Node Js Blog",
@@ -17,8 +18,13 @@ router.get("", async (req,res)=>{
     
   });
 
-  router.get("/about",(req,res)=>{
-    res.render("about");
+  router.get("/about", async (req,res)=>{
+    try {
+      const data = await Event.find();
+      res.render("about", {data});
+    } catch(error){
+      console.log(error);
+    }
   });
   
   /**
@@ -92,4 +98,20 @@ router.get("", async (req,res)=>{
 //      ])
 //    }
 //insertPostData();
+
+//function insertEventData (){
+//     Event.insertMany([
+//       {
+//         title: "Welcoming New Year",
+//       body: "I have put my thoughts from 2023 and positive headstart to 2024",
+//       link: "https://youtu.be/TUteg-auN7Y"
+//     },
+//     {
+//       title: "Exploring Keolodo National Park",
+//     body: "I with other like minded people from various colleges with WWF,India went to see the beauty of our biodiversity ",
+//      link: "https://www.linkedin.com/posts/komal-verma-640897239_day-21-today-i-had-the-opportunity-to-visit-activity-7159516334630854656-Kxm6?utm_source=share&utm_medium=member_desktop"
+//   }
+//        ])
+//      }
+//  insertEventData();
  module.exports = router;
