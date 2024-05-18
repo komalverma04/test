@@ -79,38 +79,39 @@ router.get("", async (req,res)=>{
 // function insertPostData (){
 //   Post.insertMany([
 //     {
-//       title: "Building a Blog",
-//     body: "This is the body text"
+//       title: "Bhartiya Janta Party",
+//     body: "Lorem"
 //   },
 //   {
-//     title: "Starting with git",
-//   body: "This is the body text"
+//     title: "Aam Aadmi Party",
+//   body: "Lorem"
 // },
 // {
-//   title: "HTML and CSS",
-// body: "This is the body text"
-//  },
-//  {
-//    title: "Backened",
-//  body: "This is the body text"
+//   title: "Samajwadi Party",
+// body: "Lorem"
 //  }
 //      
-//      ])
+//    ])
 //    }
 //insertPostData();
 
 //function insertEventData (){
 //     Event.insertMany([
 //       {
-//         title: "Welcoming New Year",
-//       body: "I have put my thoughts from 2023 and positive headstart to 2024",
-//       link: "https://youtu.be/TUteg-auN7Y"
+//         title: "Aam Aadmi Party",
+//       body: "badhiya party hai",
+//       link: "https://www.google.com/search?q=Aam+Aadmi+party&sca_esv=2e47e62a151241ca&bih=679&biw=1366&hl=en&tbm=nws&sxsrf=ADLYWII7XkWRdBQ7BhdeATaAujSKYFIVUw:1716026142398&story=GiMSIUFBUCBNUCBTd2F0aSBNYWxpd2FsIGFzc2F1bHQgY2FzZTIyCij1rqiq4vHb69UBhs7Km7f9konkAbKekr6WiKP7jwHK04vVw_O36tQBELLY0NALGAVyAhAB&fcs=ACgqzeda-5htx4fotKoM2mIX4vka4wmSyw&sa=X&ved=2ahUKEwj445HF95aGAxUlfGwGHRVdBIsQjcEJegQIGxAD"
 //     },
 //     {
-//       title: "Exploring Keolodo National Park",
-//     body: "I with other like minded people from various colleges with WWF,India went to see the beauty of our biodiversity ",
-//      link: "https://www.linkedin.com/posts/komal-verma-640897239_day-21-today-i-had-the-opportunity-to-visit-activity-7159516334630854656-Kxm6?utm_source=share&utm_medium=member_desktop"
-//   }
+//       title: "Bhartiya Janta Party",
+//     body: "Donation should be done",
+//      link: "https://www.bjp.org/home"
+//     },
+//     {
+//      title: "Samajwadi Party",
+//    body: "Kardo inhe bhi",
+//    link: "https://www.samajwadiparty.in/"
+//  }
 //        ])
 //      }
 //  insertEventData();
